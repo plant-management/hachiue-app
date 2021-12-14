@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <Text>ホーム画面</Text>
