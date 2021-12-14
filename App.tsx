@@ -3,7 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { InitialSettingScreen, CharacterScreen, MainTab } from "./src/screens";
+import { InitialSettingScreen, MainTab } from "./src/screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,6 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="InitialSetting" component={InitialSettingScreen} />
-        <Stack.Screen name="Character" component={CharacterScreen} />
       </Stack.Navigator>
       <StatusBar />
     </NavigationContainer>
