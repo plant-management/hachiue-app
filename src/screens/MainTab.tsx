@@ -5,6 +5,7 @@ import { Foundation, FontAwesome } from "@expo/vector-icons";
 
 import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
 import tabBar from "../../assets/tab_bar.png";
+import menuBar from "../../assets/menu_bar.png";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,6 +13,7 @@ const MainTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerBackground: () => <Image source={menuBar} />,
         tabBarStyle: {
           position: "absolute",
           height: 80,
