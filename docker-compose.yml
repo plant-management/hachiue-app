@@ -1,0 +1,18 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+    tty: true
+    restart: always
+    volumes:
+      - .:/workspace:cached
+      - /workspace/node_modules
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+      - "19002:19002"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+    env_file: .env
