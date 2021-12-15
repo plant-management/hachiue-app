@@ -14,6 +14,8 @@ const MainTab = () => {
     <Tab.Navigator
       screenOptions={{
         headerBackground: () => <Image source={menuBar} />,
+        headerTintColor: "white",
+        headerStyle: { height: 87 },
         tabBarStyle: {
           position: "absolute",
           height: 80,
@@ -40,6 +42,9 @@ const MainTab = () => {
         component={TimeLineScreen}
         options={{
           title: "タイムライン",
+          headerTitleAlign: "left",
+          headerLeft: () => <Foundation name="clock" size={32} color="white" />,
+          headerLeftContainerStyle: { paddingLeft: 24 },
           tabBarIcon: ({ color }) => (
             <Foundation name="clock" size={32} color={color} />
           ),
@@ -50,6 +55,9 @@ const MainTab = () => {
         component={SettingScreen}
         options={{
           title: "設定",
+          headerTitleAlign: "left",
+          headerLeft: () => <FontAwesome name="gear" size={32} color="white" />,
+          headerLeftContainerStyle: { paddingLeft: 24 },
           tabBarIcon: ({ color }) => (
             <FontAwesome name="gear" size={32} color={color} />
           ),
