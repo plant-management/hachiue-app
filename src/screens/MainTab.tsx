@@ -1,13 +1,27 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Image } from "react-native";
+import {
+  createBottomTabNavigator,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
 
 import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
+import tabBar from "../../assets/tab_bar.png";
 
 const Tab = createBottomTabNavigator();
 
 const MainTab = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          position: "absolute",
+          height: 90,
+        },
+        tabBarBackground: () => <Image source={tabBar} />,
+        tabBarShowLabel: false,
+      }}
+    >
       <Tab.Screen
         name="HomeCharacter"
         component={HomeCharacterStack}

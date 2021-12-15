@@ -9,7 +9,11 @@ const HomeCharacterStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Character" component={CharacterScreen} />
+      <Stack.Screen
+        name="Character"
+        component={CharacterScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
