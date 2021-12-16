@@ -3,6 +3,7 @@ import { Image } from "react-native";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Foundation } from "@expo/vector-icons";
+import tailwind from "tailwind-rn";
 
 import { HomeScreen, CharacterScreen } from ".";
 import menuBarImage from "../../assets/menu_bar.png";
@@ -13,11 +14,11 @@ const HomeCharacterStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerBackground: () => <Image source={menuBarImage} />,
+        headerBackground: () => (
+          <Image source={menuBarImage} style={tailwind("w-full")} />
+        ),
         headerTintColor: "white",
-        headerStyle: {
-          height: 87,
-        },
+        headerStyle: { height: 87 },
       }}
     >
       <Stack.Screen

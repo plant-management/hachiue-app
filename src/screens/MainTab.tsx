@@ -2,6 +2,7 @@ import React from "react";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Foundation, FontAwesome } from "@expo/vector-icons";
+import tailwind from "tailwind-rn";
 
 import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
 import tabBarImage from "../../assets/tab_bar.png";
@@ -13,15 +14,16 @@ const MainTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerBackground: () => <Image source={menuBarImage} />,
+        headerBackground: () => (
+          <Image source={menuBarImage} style={tailwind("w-full")} />
+        ),
         headerTintColor: "white",
         headerStyle: { height: 87 },
-        tabBarStyle: {
-          position: "absolute",
-          height: 80,
-        },
+        tabBarStyle: { position: "absolute", height: 80 },
         tabBarLabelStyle: { paddingBottom: 10 },
-        tabBarBackground: () => <Image source={tabBarImage} />,
+        tabBarBackground: () => (
+          <Image source={tabBarImage} style={tailwind("w-full")} />
+        ),
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
       }}
