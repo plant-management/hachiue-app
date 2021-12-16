@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Text, Button, Alert } from "react-native";
+import { View, Text, Button, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import tailwind from "tailwind-rn";
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
+
+import backgroundImage from "../../assets/background.png";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -18,11 +20,17 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Text style={tailwind("text-blue-800 font-semibold")}>ホーム画面</Text>
-      <Button
-        title="キャラクター画面へ"
-        onPress={() => navigation.navigate("Character")}
-      />
+      <ImageBackground
+        source={backgroundImage}
+        resizeMode="cover"
+        style={tailwind("h-full w-full")}
+      >
+        <Text style={tailwind("text-blue-800 font-semibold")}>ホーム画面</Text>
+        <Button
+          title="キャラクター画面へ"
+          onPress={() => navigation.navigate("Character")}
+        />
+      </ImageBackground>
     </View>
   );
 };

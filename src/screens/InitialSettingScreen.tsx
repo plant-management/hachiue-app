@@ -1,10 +1,19 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
+import tailwind from "tailwind-rn";
+
+import backgroundImage from "../../assets/background.png";
 
 const InitialSettingScreen = () => {
   return (
     <View>
-      <Text>初期設定画面</Text>
+      <ImageBackground
+        source={backgroundImage}
+        resizeMode="cover"
+        style={tailwind("h-full w-full")}
+      >
+        <Text>初期設定画面</Text>
+      </ImageBackground>
     </View>
   );
 };
