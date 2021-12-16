@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Foundation, FontAwesome } from "@expo/vector-icons";
 
 import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
-import tabBar from "../../assets/tab_bar.png";
-import menuBar from "../../assets/menu_bar.png";
+import tabBarImage from "../../assets/tab_bar.png";
+import menuBarImage from "../../assets/menu_bar.png";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ const MainTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerBackground: () => <Image source={menuBar} />,
+        headerBackground: () => <Image source={menuBarImage} />,
         headerTintColor: "white",
         headerStyle: { height: 87 },
         tabBarStyle: {
@@ -21,7 +21,7 @@ const MainTab = () => {
           height: 80,
         },
         tabBarLabelStyle: { paddingBottom: 10 },
-        tabBarBackground: () => <Image source={tabBar} />,
+        tabBarBackground: () => <Image source={tabBarImage} />,
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
       }}

@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Foundation } from "@expo/vector-icons";
 
 import { HomeScreen, CharacterScreen } from ".";
-import menuBar from "../../assets/menu_bar.png";
+import menuBarImage from "../../assets/menu_bar.png";
 
 const Stack = createStackNavigator();
 
@@ -13,7 +13,7 @@ const HomeCharacterStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerBackground: () => <Image source={menuBar} />,
+        headerBackground: () => <Image source={menuBarImage} />,
         headerTintColor: "white",
         headerStyle: {
           height: 87,
