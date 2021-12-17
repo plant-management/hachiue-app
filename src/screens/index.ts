@@ -1,4 +1,4 @@
-export { default as Camera } from "./Camera";
+export { default as CameraScreen } from "./CameraScreen";
 export { default as CharacterScreen } from "./CharacterScreen";
 export { default as CreatePlantScreen } from "./CreatePlantScreen";
 export { default as HomeScreen } from "./HomeScreen";
