@@ -18,7 +18,9 @@ const PickerLabelColor = (props: PickerLabelColorProps) => {
 
   return (
     <View>
-      <Text>ラベルカラー</Text>
+      <Text style={tailwind("text-lg font-bold pb-1 text-gray-800")}>
+        ラベルカラー
+      </Text>
       <View style={tailwind("flex-row justify-between")}>
         {labelColorList.map((labelColor) => (
           <TouchableOpacity
