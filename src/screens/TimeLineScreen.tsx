@@ -1,20 +1,15 @@
 import React from "react";
-import { View, Text, ImageBackground } from "react-native";
-import tailwind from "tailwind-rn";
+import { Text } from "react-native";
 
-import backgroundImage from "../../assets/background.png";
+import { ScreenInitilize } from "../ui";
 
 const TimeLineScreen = () => {
   return (
-    <View>
-      <ImageBackground
-        source={backgroundImage}
-        resizeMode="cover"
-        style={tailwind("h-full w-full")}
-      >
+    <ScreenInitilize>
+      <>
         <Text>タイムライン画面</Text>
-      </ImageBackground>
-    </View>
+      </>
+    </ScreenInitilize>
   );
 };
 

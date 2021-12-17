@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TextInput } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
@@ -10,6 +10,10 @@ type PickerViewProps = {
 
 const PickerView = (props: PickerViewProps) => {
   const pickerItemList = ["小松菜", "二十日大根"];
+
+  useEffect(() => {
+    props.handlePickerInput(pickerItemList[0]);
+  }, []);
 
   return (
     <View>
