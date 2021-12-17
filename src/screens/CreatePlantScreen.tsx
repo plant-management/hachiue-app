@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView, ImageBackground } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, ImageBackground, View } from "react-native";
 import tailwind from "tailwind-rn";
 
 import { TextInputView, PickerView, PickerLabelColor } from "../ui";
@@ -17,17 +17,19 @@ const CreatePlantScreen = () => {
         resizeMode="cover"
         style={tailwind("h-full w-full")}
       >
-        <TextInputView
-          title="植物の名前"
-          textInput={plantName}
-          handleTextInput={setPlantName}
-        />
-        <PickerView
-          title="植物の種類"
-          pickerInput={plantType}
-          handlePickerInput={setPlantType}
-        />
-        <PickerLabelColor handleLabelColorInput={setPlantLabelColor} />
+        <View style={tailwind("w-5/6")}>
+          <TextInputView
+            title="植物の名前"
+            textInput={plantName}
+            handleTextInput={setPlantName}
+          />
+          <PickerView
+            title="植物の種類"
+            pickerInput={plantType}
+            handlePickerInput={setPlantType}
+          />
+          <PickerLabelColor handleLabelColorInput={setPlantLabelColor} />
+        </View>
       </ImageBackground>
     </SafeAreaView>
   );

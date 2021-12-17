@@ -28,7 +28,7 @@ const PickerLabelColor = (props: PickerLabelColorProps) => {
             }}
           >
             <View
-              style={{ backgroundColor: labelColor, width: 20, height: 20 }}
+              style={{ backgroundColor: labelColor, width: 32, height: 32 }}
             />
           </TouchableOpacity>
         ))}
