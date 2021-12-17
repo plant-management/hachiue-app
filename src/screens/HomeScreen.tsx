@@ -30,6 +30,10 @@ const HomeScreen = () => {
           title="キャラクター画面へ"
           onPress={() => navigation.navigate("Character")}
         />
+        <Button
+          title="植物作成画面へ"
+          onPress={() => navigation.navigate("CreatePlant")}
+        />
       </ImageBackground>
     </View>
   );

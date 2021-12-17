@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Foundation, FontAwesome } from "@expo/vector-icons";
 import tailwind from "tailwind-rn";
 
-import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
+import { TimeLineScreen, SettingScreen, HomeScreen } from ".";
 import tabBarImage from "../../assets/tab_bar.png";
 import menuBarImage from "../../assets/menu_bar.png";
 
@@ -29,10 +29,9 @@ const MainTab = () => {
       }}
     >
       <Tab.Screen
-        name="HomeCharacter"
-        component={HomeCharacterStack}
+        name="Home"
+        component={HomeScreen}
         options={{
-          headerShown: false,
           title: "ホーム",
           tabBarIcon: ({ color }) => (
             <Foundation name="home" size={32} color={color} />
