@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { View, Text, ImageBackground } from "react-native";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, ImageBackground } from "react-native";
 import tailwind from "tailwind-rn";
 
-import { TextInputView, PickerView } from "../ui";
+import { TextInputView, PickerView, PickerLabelColor } from "../ui";
 import backgroundImage from "../../assets/background.png";
 
 const CreatePlantScreen = () => {
   const [plantName, setPlantName] = useState("");
   const [plantType, setPlantType] = useState("");
+  const [plantLabelColor, setPlantLabelColor] = useState("");
 
   return (
-    <View>
+    <SafeAreaView>
       <ImageBackground
         source={backgroundImage}
         resizeMode="cover"
@@ -26,8 +27,9 @@ const CreatePlantScreen = () => {
           pickerInput={plantType}
           handlePickerInput={setPlantType}
         />
+        <PickerLabelColor handleLabelColorInput={setPlantLabelColor} />
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 
