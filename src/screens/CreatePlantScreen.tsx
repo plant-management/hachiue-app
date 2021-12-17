@@ -22,11 +22,15 @@ const CreatePlantScreen = () => {
   const pickerItemList = ["小松菜", "二十日大根"];
 
   const handlePressNext = () => {
-    navigation.navigate("Camera", {
-      plantName: plantName,
-      plantType: plantType,
-      plantLabelColor: plantLabelColor,
-    });
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    getUserId().then((userId) =>
+      navigation.navigate("Camera", {
+        userId: userId,
+        plantName: plantName,
+        plantType: plantType,
+        plantLabelColor: plantLabelColor,
+      })
+    );
   };
 
   const handlePressBack = () => {
