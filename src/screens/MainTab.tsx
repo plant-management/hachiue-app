@@ -33,6 +33,9 @@ const MainTab = () => {
         component={HomeScreen}
         options={{
           title: "ホーム",
+          headerTitleAlign: "left",
+          headerLeft: () => <Foundation name="home" size={32} color="white" />,
+          headerLeftContainerStyle: { paddingLeft: 24 },
           tabBarIcon: ({ color }) => (
             <Foundation name="home" size={32} color={color} />
           ),
