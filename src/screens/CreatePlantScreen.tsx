@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { View, Text, ImageBackground } from "react-native";
 import tailwind from "tailwind-rn";
 
-import { TextInputView } from "../ui";
+import { TextInputView, PickerView } from "../ui";
 import backgroundImage from "../../assets/background.png";
 
 const CreatePlantScreen = () => {
   const [plantName, setPlantName] = useState("");
+  const [plantType, setPlantType] = useState("");
 
   return (
     <View>
@@ -19,6 +20,11 @@ const CreatePlantScreen = () => {
           title="植物の名前"
           textInput={plantName}
           handleTextInput={setPlantName}
+        />
+        <PickerView
+          title="植物の種類"
+          pickerInput={plantType}
+          handlePickerInput={setPlantType}
         />
       </ImageBackground>
     </View>
