@@ -11,6 +11,10 @@ import { Camera } from "expo-camera";
 import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 import tailwind from "tailwind-rn";
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
+
+import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
+import { getUserId } from "../util/localUserId";
 
 const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -40,10 +44,42 @@ const CameraScreen = () => {
               originY: originY,
             },
           },
-          { resize: { height: 224, width: 224 } },
+          { resize: { height: 16, width: 16 } },
         ],
         { base64: true, compress: 1, format: SaveFormat.JPEG }
       );
+
+      const userId = await getUserId();
+
+      axios
+        .post(
+          `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/new_plant_data/${userId}?b64_image=${manipResult.base64}`,
+          {
+            plant_name: route.params.plantName,
+            plant_type: route.params.plantType,
+            plant_label_color: route.params.plantLabelColor,
+          }
+        )
+        .then((res) => {
+          navigation.navigate("Character", {
+            plantName: res.data.plant_name,
+            plantType: res.data.plant_type,
+            plantLabelColor: res.data.plant_label_color,
+            userId: res.data.user_id,
+            plantId: res.data.plant_id,
+            weatherIcon: res.data.weather_icon,
+            temp: res.data.temp,
+            humidity: res.data.humidity,
+            comment: res.data.comment,
+            satisfaction: res.data.satisfaction,
+            days: res.data.days,
+          });
+        })
+        .catch((error) => {
+          // alert(error.message);
+          alert("通信エラーが発生しました。もう1度撮影してください。");
+          setPicture("");
+        });
     }
   };
 

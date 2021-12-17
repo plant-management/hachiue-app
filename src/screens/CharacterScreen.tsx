@@ -1,10 +1,13 @@
+import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { View, Text } from "react-native";
 
 const CharacterScreen = () => {
+  const route = useRoute();
+
   return (
     <View>
-      <Text>キャラクター画面</Text>
+      <Text>{route.params.plantName}</Text>
     </View>
   );
 };
