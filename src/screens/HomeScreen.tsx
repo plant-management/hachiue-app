@@ -7,6 +7,7 @@ import tailwind from "tailwind-rn";
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { ScreenInitilize } from "../ui";
 import { getUserId } from "../util/localUserId";
+import { HomeItem } from "../model";
 
 type ResponseType = {
   plantName: string;
@@ -44,15 +45,6 @@ const HomeScreen = () => {
       }
     })();
   }, []);
-
-  const HomeItem = ({ item }) => {
-    console.log(item);
-    return (
-      <View style={tailwind("h-20")}>
-        <Text>ああああ</Text>
-      </View>
-    );
-  };
 
   return (
     <ScreenInitilize>
