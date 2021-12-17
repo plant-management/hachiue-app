@@ -10,6 +10,7 @@ import {
   ScreenInitilize,
   Button,
 } from "../ui";
+import { getUserId } from "../util/localUserId";
 
 const CreatePlantScreen = () => {
   const [plantName, setPlantName] = useState("");
@@ -51,7 +52,10 @@ const CreatePlantScreen = () => {
           pickerInput={plantType}
           handlePickerInput={setPlantType}
         />
-        <PickerLabelColor handleLabelColorInput={setPlantLabelColor} />
+        <PickerLabelColor
+          plantLabelColor={plantLabelColor}
+          handlePlantLabelColor={setPlantLabelColor}
+        />
         <View style={tailwind("flex-row justify-evenly")}>
           <Button
             handleOnPress={handlePressBack}
