@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Camera } from "expo-camera";
-import { manipulateAsync } from "expo-image-manipulator";
+import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 import tailwind from "tailwind-rn";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,18 +19,31 @@ const CameraScreen = () => {
   const [picture, setPicture] = useState("");
 
   const route = useRoute();
+  const navigation = useNavigation();
 
   const takePicture = async () => {
     if (camera) {
       const image = await camera.takePictureAsync();
       setPicture(image.uri);
 
-      // const manipResult = await manipulateAsync(
-      //   image.uri,
-      //   [
-      //     {resize: {height: newHeight, width: newWidth}}
-      //   ]
-      // )
+      const length = image.width > image.height ? image.height : image.width;
+      const originX = (image.width - length) / 2;
+      const originY = (image.height - length) / 2;
+      const manipResult = await manipulateAsync(
+        image.uri,
+        [
+          {
+            crop: {
+              height: length,
+              width: length,
+              originX: originX,
+              originY: originY,
+            },
+          },
+          { resize: { height: 224, width: 224 } },
+        ],
+        { base64: true, compress: 1, format: SaveFormat.JPEG }
+      );
     }
   };
 
