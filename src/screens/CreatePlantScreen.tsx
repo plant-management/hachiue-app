@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import tailwind from "tailwind-rn";
 
 import {
@@ -7,6 +8,7 @@ import {
   PickerView,
   PickerLabelColor,
   ScreenInitilize,
+  Button,
 } from "../ui";
 
 const CreatePlantScreen = () => {
@@ -14,7 +16,21 @@ const CreatePlantScreen = () => {
   const [plantType, setPlantType] = useState("");
   const [plantLabelColor, setPlantLabelColor] = useState("");
 
+  const navigation = useNavigation();
+
   const pickerItemList = ["小松菜", "二十日大根"];
+
+  const handlePressNext = () => {
+    navigation.navigate("Camera", {
+      plantName: plantName,
+      plantType: plantType,
+      plantLabelColor: plantLabelColor,
+    });
+  };
+
+  const handlePressBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <ScreenInitilize>
@@ -36,6 +52,20 @@ const CreatePlantScreen = () => {
           handlePickerInput={setPlantType}
         />
         <PickerLabelColor handleLabelColorInput={setPlantLabelColor} />
+        <View style={tailwind("flex-row justify-evenly")}>
+          <Button
+            handleOnPress={handlePressBack}
+            backgroundColor="bg-gray-200"
+            textColor="text-gray-800"
+            value="戻る"
+          />
+          <Button
+            handleOnPress={handlePressNext}
+            backgroundColor="bg-yellow-900"
+            textColor="text-gray-100"
+            value="次へ"
+          />
+        </View>
       </>
     </ScreenInitilize>
   );

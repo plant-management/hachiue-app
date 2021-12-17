@@ -17,7 +17,7 @@ const PickerLabelColor = (props: PickerLabelColorProps) => {
   ];
 
   return (
-    <View>
+    <View style={tailwind("pb-8")}>
       <Text style={tailwind("text-lg font-bold pb-1 text-gray-800")}>
         ラベルカラー
       </Text>

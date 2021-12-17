@@ -16,7 +16,7 @@ const PickerView = (props: PickerViewProps) => {
   }, []);
 
   return (
-    <View style={tailwind("")}>
+    <View>
       <Text style={tailwind("text-lg font-bold text-gray-800")}>
         {props.title}
       </Text>
