@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Camera } from "expo-camera";
+import { manipulateAsync } from "expo-image-manipulator";
 import tailwind from "tailwind-rn";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -9,13 +16,21 @@ const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(false);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [camera, setCamera] = useState<Camera | null>(null);
+  const [picture, setPicture] = useState("");
 
   const route = useRoute();
 
   const takePicture = async () => {
     if (camera) {
       const image = await camera.takePictureAsync();
-      alert(image.uri);
+      setPicture(image.uri);
+
+      // const manipResult = await manipulateAsync(
+      //   image.uri,
+      //   [
+      //     {resize: {height: newHeight, width: newWidth}}
+      //   ]
+      // )
     }
   };
 
@@ -32,11 +47,16 @@ const CameraScreen = () => {
   }
   return (
     <SafeAreaView style={tailwind("flex-1")}>
-      <Camera
-        type={type}
-        style={tailwind("flex-1")}
-        ref={(ref) => setCamera(ref)}
-      />
+      {!picture ? (
+        <Camera
+          type={type}
+          style={tailwind("flex-1")}
+          ref={(ref) => setCamera(ref)}
+        />
+      ) : (
+        <Image source={{ uri: picture }} style={tailwind("flex-1")} />
+      )}
+
       <View style={tailwind("h-20 justify-evenly items-center flex-row")}>
         <TouchableOpacity
           style={tailwind("w-11 h-11 rounded-full border-gray-500 border-8")}
