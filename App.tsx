@@ -10,10 +10,16 @@ import {
   CharacterScreen,
   MainTab,
 } from "./src/screens";
+import { storeUserId } from "./src/util/localUserId";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // Firebaseでユーザー認証を行うまでの暫定措置
+  // ユーザー登録画面を作成後はこのコードは不要
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  storeUserId("0385454c-aa96-4c2d-a424-7e336fb2275d");
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="InitialSetting">
