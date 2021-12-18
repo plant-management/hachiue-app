@@ -1,12 +1,13 @@
 import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import axios from "axios";
 import tailwind from "tailwind-rn";
 
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { getUserId } from "../util/localUserId";
 import { ScreenInitilizeCharacter } from "../ui";
+import { CharacterMain } from "../model";
 
 type CharacterDataProps = {
   plantName: string;
@@ -35,7 +36,7 @@ const CharacterScreen = () => {
       const res = await axios.get(
         `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character/${userId}?plant_id=${route.params.plantId}`
       );
-      setCharacter({
+      setCharacterData({
         plantName: res.data.plant_name,
         plantType: res.data.plant_type,
         day: res.data.day,
@@ -52,14 +53,13 @@ const CharacterScreen = () => {
   return (
     <ScreenInitilizeCharacter>
       <>
-        <View style={tailwind("bg-green-300 h-3/6")}>
-          <Text>キャラクター・植物情報</Text>
-        </View>
-        <View style={tailwind("bg-gray-300 h-2/6")}>
-          <Text>キャラクター・植物情報</Text>
-        </View>
-        <View style={tailwind("bg-yellow-300 h-1/6")}>
-          <Text>キャラクター・植物情報</Text>
+        <CharacterMain {...characterData} />
+        <ScrollView>
+          <Text style={tailwind("flex-1 bg-gray-200")}>メニュー1</Text>
+          <Text style={tailwind("flex-1 bg-gray-200")}>メニュー2</Text>
+        </ScrollView>
+        <View style={tailwind("bg-yellow-300 h-20")}>
+          <Text>フッター</Text>
         </View>
       </>
     </ScreenInitilizeCharacter>

@@ -16,7 +16,7 @@ const ScreenInitializeChacter = (props: ScreenInitilizeType): JSX.Element => {
         resizeMode="cover"
         style={tailwind("h-full w-full")}
       >
-        <View>{props.children}</View>
+        <View style={tailwind("h-full w-full")}>{props.children}</View>
       </ImageBackground>
     </SafeAreaView>
   );
