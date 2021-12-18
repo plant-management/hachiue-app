@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ImageBackground } from "react-native";
 import tailwind from "tailwind-rn";
 
 import sunny from "../../assets/sunny.png";
 import cloud from "../../assets/cloud.png";
 import rain from "../../assets/rain.png";
+import separateBar from "../../assets/separate_bar.png";
 
 type CharacterDataProps = {
   plantName: string;
@@ -22,8 +23,8 @@ const CharacterMain = (props: CharacterDataProps) => {
   useEffect(() => console.log(props));
   return (
     // 巨大すぎるからCEDC後にコンポーネントに分ける
-    <View style={tailwind("h-3/5 px-4")}>
-      <View style={tailwind("h-2/5")}>
+    <View style={tailwind("h-3/5")}>
+      <View style={tailwind("h-2/5 px-4")}>
         <View style={tailwind("h-2/3 py-2")}>
           <View style={tailwind("flex-row justify-between items-center pb-2")}>
             <View>
@@ -57,11 +58,12 @@ const CharacterMain = (props: CharacterDataProps) => {
           </View>
         </View>
       </View>
-      <View style={tailwind("w-full justify-center flex-row")}>
+      <View style={tailwind("h-3/5 flex-1 justify-center items-center")}>
         <Image
           source={{ uri: `data:image/png;base64,${props.characterImage}` }}
-          style={tailwind("w-64 h-64")}
+          style={tailwind("h-52 w-52")}
         />
+        <Image source={separateBar} style={tailwind("w-full")} />
       </View>
     </View>
   );
