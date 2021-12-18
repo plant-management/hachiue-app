@@ -7,7 +7,7 @@ import tailwind from "tailwind-rn";
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { getUserId } from "../util/localUserId";
 import { ScreenInitilizeCharacter } from "../ui";
-import { CharacterMain } from "../model";
+import { CharacterMain, CharacterMenu } from "../model";
 
 type CharacterDataProps = {
   plantName: string;
@@ -54,10 +54,7 @@ const CharacterScreen = () => {
     <ScreenInitilizeCharacter>
       <>
         <CharacterMain {...characterData} />
-        <ScrollView>
-          <Text style={tailwind("flex-1 bg-gray-200")}>メニュー1</Text>
-          <Text style={tailwind("flex-1 bg-gray-200")}>メニュー2</Text>
-        </ScrollView>
+        <CharacterMenu />
         <View style={tailwind("bg-yellow-300 h-20")}>
           <Text>フッター</Text>
         </View>
