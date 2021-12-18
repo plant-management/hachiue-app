@@ -2,9 +2,11 @@ import { useRoute } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import axios from "axios";
+import tailwind from "tailwind-rn";
 
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { getUserId } from "../util/localUserId";
+import { ScreenInitilizeCharacter } from "../ui";
 
 const CharacterScreen = () => {
   const route = useRoute();
@@ -17,15 +19,23 @@ const CharacterScreen = () => {
       const res = await axios.get(
         `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character/${userId}?plant_id=${route.params.plantId}`
       );
-      console.log(res);
-      console.log(route.params.plantId);
     })();
   }, []);
 
   return (
-    <View>
-      <Text>キャラクター画面</Text>
-    </View>
+    <ScreenInitilizeCharacter>
+      <>
+        <View style={tailwind("bg-green-300 h-3/6")}>
+          <Text>キャラクター・植物情報</Text>
+        </View>
+        <View style={tailwind("bg-gray-300 h-2/6")}>
+          <Text>キャラクター・植物情報</Text>
+        </View>
+        <View style={tailwind("bg-yellow-300 h-1/6")}>
+          <Text>キャラクター・植物情報</Text>
+        </View>
+      </>
+    </ScreenInitilizeCharacter>
   );
 };
 
