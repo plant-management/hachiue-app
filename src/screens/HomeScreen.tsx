@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, FlatList } from "react-native";
+import { Button, FlatList, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
@@ -7,6 +7,7 @@ import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { ScreenInitilize } from "../ui";
 import { getUserId } from "../util/localUserId";
 import { HomeItem } from "../model";
+import tailwind from "tailwind-rn";
 
 type ResponseType = {
   plantId: string;
@@ -61,10 +62,12 @@ const HomeScreen = () => {
           renderItem={HomeItem}
           keyExtractor={(item, index) => String(index)}
         />
-        <Button
-          title="植物作成画面へ"
-          onPress={() => navigation.navigate("CreatePlant")}
-        />
+        <View style={tailwind("absolute bottom-4 right-0 z-40")}>
+          <Button
+            title="植物作成画面へ"
+            onPress={() => navigation.navigate("CreatePlant")}
+          ></Button>
+        </View>
       </>
     </ScreenInitilize>
   );
