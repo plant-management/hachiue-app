@@ -4,13 +4,21 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Foundation, FontAwesome } from "@expo/vector-icons";
 import tailwind from "tailwind-rn";
 
-import { HomeCharacterStack, TimeLineScreen, SettingScreen } from ".";
+import { TimeLineScreen, SettingScreen, HomeScreen } from ".";
+import { CreatePlantButton } from "../ui";
 import tabBarImage from "../../assets/tab_bar.png";
 import menuBarImage from "../../assets/menu_bar.png";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const MainTab = () => {
+  const navigation = useNavigation();
+
+  const handleCreatePlant = () => {
+    navigation.navigate("CreatePlant");
+  };
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -19,6 +27,9 @@ const MainTab = () => {
         ),
         headerTintColor: "white",
         headerStyle: { height: 87 },
+        headerRight: () => (
+          <CreatePlantButton handleCreatePlant={handleCreatePlant} />
+        ),
         tabBarStyle: { position: "absolute", height: 80 },
         tabBarLabelStyle: { paddingBottom: 10 },
         tabBarBackground: () => (
@@ -29,11 +40,13 @@ const MainTab = () => {
       }}
     >
       <Tab.Screen
-        name="HomeCharacter"
-        component={HomeCharacterStack}
+        name="Home"
+        component={HomeScreen}
         options={{
-          headerShown: false,
           title: "ホーム",
+          headerTitleAlign: "left",
+          headerLeft: () => <Foundation name="home" size={32} color="white" />,
+          headerLeftContainerStyle: { paddingLeft: 24 },
           tabBarIcon: ({ color }) => (
             <Foundation name="home" size={32} color={color} />
           ),

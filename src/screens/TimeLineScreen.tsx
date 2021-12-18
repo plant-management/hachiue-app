@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+
+import { ScreenInitilize } from "../ui";
 
 const TimeLineScreen = () => {
   return (
-    <View>
-      <Text>タイムライン画面</Text>
-    </View>
+    <ScreenInitilize>
+      <>
+        <Text>タイムライン画面</Text>
+      </>
+    </ScreenInitilize>
   );
 };
 

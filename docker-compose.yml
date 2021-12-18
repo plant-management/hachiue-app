@@ -12,6 +12,7 @@ services:
       - "19000:19000"
       - "19001:19001"
       - "19002:19002"
+      - "19006:19006"
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: npm start
