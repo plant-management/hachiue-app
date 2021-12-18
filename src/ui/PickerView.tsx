@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import tailwind from "tailwind-rn";
 

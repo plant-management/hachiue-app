@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
@@ -7,7 +7,6 @@ import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { ScreenInitilize } from "../ui";
 import { getUserId } from "../util/localUserId";
 import { HomeItem } from "../model";
-import tailwind from "tailwind-rn";
 
 type ResponseType = {
   plantId: string;

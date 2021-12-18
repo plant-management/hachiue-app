@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { View, Text, TextComponent } from "react-native";
+import { View, Text } from "react-native";
 import axios from "axios";
 import tailwind from "tailwind-rn";
 
