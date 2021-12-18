@@ -1,4 +1,4 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,6 +23,7 @@ const CharacterScreen = () => {
   const [userId, setUserId] = useState("");
   const [characterData, setCharacterData] = useState<CharacterDataProps>();
   const route = useRoute();
+  const navigation = useNavigation();
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -48,12 +49,28 @@ const CharacterScreen = () => {
     })();
   }, []);
 
+  const handleOnPressHome = () => {
+    navigation.navigate("Home");
+  };
+
+  const handleOnPressTimeLine = () => {
+    navigation.navigate("TimeLine");
+  };
+
+  const handleOnPressSetting = () => {
+    navigation.navigate("Setting");
+  };
+
   return (
     <ScreenInitilizeCharacter>
       <CharacterMain {...characterData} />
       {/* メニュー用の背景を設定するとフッターがどっかいく */}
       <CharacterMenu />
-      <CharacterFooter />
+      <CharacterFooter
+        onPressHome={handleOnPressHome}
+        onPressTimeLine={handleOnPressTimeLine}
+        onPressSetting={handleOnPressSetting}
+      />
     </ScreenInitilizeCharacter>
   );
 };

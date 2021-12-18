@@ -38,7 +38,7 @@ const CharacterMenu = () => {
         </TouchableOpacity>
         <TouchableOpacity style={menuCss}>
           <Entypo name="twitter-with-circle" size={45} color="gray" />
-          <Text style={tailwind("text-gray-500")}>着せ替え</Text>
+          <Text style={tailwind("text-gray-500")}>Twitter</Text>
         </TouchableOpacity>
         <TouchableOpacity style={menuCss}>
           <MaterialCommunityIcons
