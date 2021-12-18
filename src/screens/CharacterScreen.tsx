@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 import axios from "axios";
 import tailwind from "tailwind-rn";
 
@@ -52,13 +52,12 @@ const CharacterScreen = () => {
 
   return (
     <ScreenInitilizeCharacter>
-      <>
-        <CharacterMain {...characterData} />
-        <CharacterMenu />
-        <View style={tailwind("bg-yellow-300 h-20")}>
-          <Text>フッター</Text>
-        </View>
-      </>
+      <CharacterMain {...characterData} />
+      {/* メニュー用の背景を設定するとフッターがどっかいく */}
+      <CharacterMenu />
+      <View style={tailwind("bg-yellow-300 h-20")}>
+        <Text>フッター</Text>
+      </View>
     </ScreenInitilizeCharacter>
   );
 };
