@@ -56,19 +56,11 @@ const HomeScreen = () => {
 
   return (
     <ScreenInitilize>
-      <>
-        <FlatList
-          data={response}
-          renderItem={HomeItem}
-          keyExtractor={(item, index) => String(index)}
-        />
-        <View style={tailwind("absolute bottom-4 right-0 z-40")}>
-          <Button
-            title="植物作成画面へ"
-            onPress={() => navigation.navigate("CreatePlant")}
-          ></Button>
-        </View>
-      </>
+      <FlatList
+        data={response}
+        renderItem={HomeItem}
+        keyExtractor={(item, index) => String(index)}
+      />
     </ScreenInitilize>
   );
 };
