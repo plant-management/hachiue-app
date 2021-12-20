@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, Text, Image, ImageBackground } from "react-native";
+import React from "react";
+import { View, Text, Image } from "react-native";
 import tailwind from "tailwind-rn";
 
 import sunny from "../../assets/sunny.png";
@@ -20,7 +20,6 @@ type CharacterDataProps = {
 };
 
 const CharacterMain = (props: CharacterDataProps) => {
-  useEffect(() => console.log(props));
   return (
     // 巨大すぎるからCEDC後にコンポーネントに分ける
     <View style={tailwind("h-3/5")}>

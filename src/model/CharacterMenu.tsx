@@ -8,7 +8,6 @@ const CharacterMenu = () => {
   const menuCss = tailwind(
     "w-20 h-20 bg-white rounded-lg justify-center items-center flex border-gray-200 border-2"
   );
-  const iconCss = tailwind("");
 
   return (
     // アイコンごとにコンポーネント分割
