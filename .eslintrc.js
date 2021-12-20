@@ -36,6 +36,7 @@ module.exports = {
       2,
       { extensions: [".js", ".jsx", ".ts", ".tsx"] },
     ],
+    "import/no-cycle": "off",
   },
   settings: {
     "import/resolver": {
