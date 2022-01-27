@@ -6,6 +6,7 @@ import sunny from "../../assets/sunny.png";
 import cloud from "../../assets/cloud.png";
 import rain from "../../assets/rain.png";
 import separateBar from "../../assets/separate_bar.png";
+import balloon from "../../assets/balloon.png";
 
 type CharacterDataProps = {
   plantName: string;
@@ -61,14 +62,22 @@ const CharacterMain = (props: CharacterDataProps) => {
           </View>
         </View>
       </View>
-      <View style={tailwind("h-3/5 flex-1 justify-center items-center")}>
-        <TouchableOpacity onPress={() => onPressCharacter()} activeOpacity={1}>
-          <Image
-            source={{ uri: `data:image/png;base64,${props.characterImage}` }}
-            style={tailwind("h-52 w-52")}
-          />
-        </TouchableOpacity>
-        <Image source={separateBar} style={tailwind("w-full")} />
+
+      {/* キャラクター表示部分 */}
+      <View style={tailwind("h-3/5 relative")}>
+        <View style={tailwind("flex-1 justify-center items-center")}>
+          <TouchableOpacity
+            onPress={() => onPressCharacter()}
+            activeOpacity={1}
+          >
+            <Image
+              source={{ uri: `data:image/png;base64,${props.characterImage}` }}
+              style={tailwind("h-52 w-52")}
+            />
+          </TouchableOpacity>
+          <Image source={separateBar} style={tailwind("w-full")} />
+        </View>
+        <Image source={balloon} style={tailwind("absolute left-4 w-32")} />
       </View>
     </View>
   );
