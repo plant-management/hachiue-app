@@ -22,7 +22,7 @@ type CharacterDataProps = {
   plantName: string;
   plantType: string;
   day: number;
-  weatherIcon: ["sunny", "rain", "cloud"];
+  weatherIcon: string;
   temp: number;
   humidity: number;
   satisfaction: number;
@@ -33,15 +33,29 @@ type CharacterDataProps = {
 const CharacterMain = (props: CharacterDataProps) => {
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState("");
+  const [timerId, setTimerId] = useState<NodeJS.Timeout>();
 
   const onPressCharacter = async () => {
     const userId = await getUserId();
     if (!userId) return;
-    const res = await axios.get(
-      `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character_tap_comment/${userId}?plant_id=${props.plantId}`
-    );
-    setShowComment((prev) => !prev);
+
+    // 異なるコメントを表示させる
+    let res;
+    do {
+      res = await axios.get(
+        `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character_tap_comment/${userId}?plant_id=${props.plantId}`
+      );
+    } while ((res.data as string) === comment);
+    setShowComment(true);
     setComment(res.data as string);
+
+    // 表示中のコメントを3秒後に非表示にする
+    // 連続タップ時にTimeoutが何度も実行されないようにする
+    const newTimerId = setTimeout(() => {
+      setShowComment(false);
+    }, 3000);
+    if (timerId) clearTimeout(timerId);
+    setTimerId(newTimerId);
   };
 
   return (
