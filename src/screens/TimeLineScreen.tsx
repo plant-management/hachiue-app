@@ -2,40 +2,41 @@ import React, { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
+import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { ScreenInitilize } from "../ui";
 import { TimeLineItem, TimeLineItemType } from "../model";
+import { getUserId } from "../util/localUserId";
+import axios from "axios";
 
 const TimeLineScreen = () => {
-  const [timeLineList, setTimeLineList] = useState<TimeLineItemType[]>();
+  const [timeLineList, setTimeLineList] = useState<TimeLineItemType[]>([]);
 
   useFocusEffect(
     useCallback(() => {
-      setTimeLineList([
-        {
-          plantId: "aaa",
-          plantName: "テストプラント1",
-          day: "1-27 Thu 10:09",
-          characterImageUrl:
-            "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
-          comment: "つらたんみづちょーだい",
-        },
-        {
-          plantId: "bbb",
-          plantName: "テストプラント2",
-          day: "1-27 Thu 18:09",
-          characterImageUrl:
-            "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
-          comment: "おみづちょうだいよ！",
-        },
-        {
-          plantId: "ccc",
-          plantName: "テストプラント3",
-          day: "1-27 Thu 18:35",
-          characterImageUrl:
-            "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
-          comment: "あそぼ〜〜〜〜〜！",
-        },
-      ]);
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      (async () => {
+        const userId = await getUserId();
+        if (!userId) return;
+        const res = await axios.get(
+          `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/timeline/${userId}`
+        );
+        console.log("n回目");
+        for (const data of res.data) {
+          setTimeLineList((prev) => {
+            console.log(prev);
+            return [
+              ...prev,
+              {
+                plantId: data.plant_id,
+                plantName: data.plant_name,
+                day: data.created_at,
+                characterImageUrl: data.character_image,
+                comment: data.comment,
+              },
+            ];
+          });
+        }
+      })();
     }, [])
   );
 

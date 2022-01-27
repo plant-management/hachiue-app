@@ -25,7 +25,9 @@ const TimeLineItem = (props: ListRenderItemInfo<TimeLineItemType>) => {
         )}
       >
         <Image
-          source={{ uri: props.item.characterImageUrl }}
+          source={{
+            uri: `data:image/png;base64,${props.item.characterImageUrl}`,
+          }}
           style={tailwind("w-16 h-16")}
         />
         <Text style={tailwind("text-base")}>{props.item.comment}</Text>
