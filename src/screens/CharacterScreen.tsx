@@ -12,6 +12,7 @@ import { ScreenInitilizeCharacter, CharacterFooter } from "../ui";
 import { CharacterMain, CharacterMenu } from "../model";
 
 type CharacterDataProps = {
+  plantId: string;
   plantName: string;
   plantType: string;
   day: number;
@@ -34,13 +35,14 @@ const CharacterScreen = () => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       (async () => {
         const userId = await getUserId();
-        if (!userId) return;
+        if (!userId || !route.params) return;
         setUserId(userId);
 
         const res = await axios.get(
           `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character/${userId}?plant_id=${route.params.plantId}`
         );
         setCharacterData({
+          plantId: route.params.plantId,
           plantName: res.data.plant_name,
           plantType: res.data.plant_type,
           day: res.data.day,
@@ -69,14 +71,16 @@ const CharacterScreen = () => {
 
   return (
     <ScreenInitilizeCharacter>
-      <CharacterMain {...characterData} />
-      {/* メニュー用の背景を設定するとフッターがどっかいく */}
-      <CharacterMenu />
-      <CharacterFooter
-        onPressHome={handleOnPressHome}
-        onPressTimeLine={handleOnPressTimeLine}
-        onPressSetting={handleOnPressSetting}
-      />
+      <>
+        <CharacterMain {...characterData} />
+        {/* メニュー用の背景を設定するとフッターがどっかいく */}
+        <CharacterMenu />
+        <CharacterFooter
+          onPressHome={handleOnPressHome}
+          onPressTimeLine={handleOnPressTimeLine}
+          onPressSetting={handleOnPressSetting}
+        />
+      </>
     </ScreenInitilizeCharacter>
   );
 };

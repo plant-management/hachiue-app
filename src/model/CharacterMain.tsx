@@ -1,14 +1,24 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import tailwind from "tailwind-rn";
+import axios from "axios";
 
+import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import sunny from "../../assets/sunny.png";
 import cloud from "../../assets/cloud.png";
 import rain from "../../assets/rain.png";
 import separateBar from "../../assets/separate_bar.png";
 import balloon from "../../assets/balloon.png";
+import { getUserId } from "../util/localUserId";
 
 type CharacterDataProps = {
+  plantId: string;
   plantName: string;
   plantType: string;
   day: number;
@@ -21,10 +31,17 @@ type CharacterDataProps = {
 };
 
 const CharacterMain = (props: CharacterDataProps) => {
-  const [showBalloon, setShowBalloon] = useState(false);
+  const [showComment, setShowComment] = useState(false);
+  const [comment, setComment] = useState("");
 
-  const onPressCharacter = () => {
-    setShowBalloon((prev) => !prev);
+  const onPressCharacter = async () => {
+    const userId = await getUserId();
+    if (!userId) return;
+    const res = await axios.get(
+      `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/character_tap_comment/${userId}?plant_id=${props.plantId}`
+    );
+    setShowComment((prev) => !prev);
+    setComment(res.data as string);
   };
 
   return (
@@ -79,8 +96,15 @@ const CharacterMain = (props: CharacterDataProps) => {
           </TouchableOpacity>
           <Image source={separateBar} style={tailwind("w-full")} />
         </View>
-        {showBalloon && (
-          <Image source={balloon} style={tailwind("absolute left-4 w-32")} />
+        {showComment && (
+          <ImageBackground
+            source={balloon}
+            style={tailwind(
+              "absolute left-4 w-36 h-24 flex-row justify-center items-center"
+            )}
+          >
+            <Text style={tailwind("px-4 pb-2")}>{comment}</Text>
+          </ImageBackground>
         )}
       </View>
     </View>
