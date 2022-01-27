@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import tailwind from "tailwind-rn";
 
 import sunny from "../../assets/sunny.png";
@@ -20,6 +20,10 @@ type CharacterDataProps = {
 };
 
 const CharacterMain = (props: CharacterDataProps) => {
+  const onPressCharacter = () => {
+    console.log("キャラクターをタップしました");
+  };
+
   return (
     // 巨大すぎるからCEDC後にコンポーネントに分ける
     <View style={tailwind("h-3/5")}>
@@ -58,10 +62,12 @@ const CharacterMain = (props: CharacterDataProps) => {
         </View>
       </View>
       <View style={tailwind("h-3/5 flex-1 justify-center items-center")}>
-        <Image
-          source={{ uri: `data:image/png;base64,${props.characterImage}` }}
-          style={tailwind("h-52 w-52")}
-        />
+        <TouchableOpacity onPress={() => onPressCharacter()} activeOpacity={1}>
+          <Image
+            source={{ uri: `data:image/png;base64,${props.characterImage}` }}
+            style={tailwind("h-52 w-52")}
+          />
+        </TouchableOpacity>
         <Image source={separateBar} style={tailwind("w-full")} />
       </View>
     </View>
