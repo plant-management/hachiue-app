@@ -3,6 +3,7 @@ type TimeLineItemType = {
   plantName: string;
   day: string;
   characterImageUrl: string;
+  comment: string;
 };
 
 export default TimeLineItemType;
