@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import tailwind from "tailwind-rn";
 
@@ -21,8 +21,10 @@ type CharacterDataProps = {
 };
 
 const CharacterMain = (props: CharacterDataProps) => {
+  const [showBalloon, setShowBalloon] = useState(false);
+
   const onPressCharacter = () => {
-    console.log("キャラクターをタップしました");
+    setShowBalloon((prev) => !prev);
   };
 
   return (
@@ -77,7 +79,9 @@ const CharacterMain = (props: CharacterDataProps) => {
           </TouchableOpacity>
           <Image source={separateBar} style={tailwind("w-full")} />
         </View>
-        <Image source={balloon} style={tailwind("absolute left-4 w-32")} />
+        {showBalloon && (
+          <Image source={balloon} style={tailwind("absolute left-4 w-32")} />
+        )}
       </View>
     </View>
   );
