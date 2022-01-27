@@ -4,6 +4,7 @@ type TimeLineItemType = {
   day: string;
   characterImageUrl: string;
   comment: string;
+  onPressItem: (plantId: string) => void;
 };
 
 export default TimeLineItemType;

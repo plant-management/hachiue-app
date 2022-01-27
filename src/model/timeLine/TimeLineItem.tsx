@@ -6,9 +6,9 @@ import {
   Image,
 } from "react-native";
 import React from "react";
+import tailwind from "tailwind-rn";
 
 import { TimeLineItemType } from "..";
-import tailwind from "tailwind-rn";
 
 const TimeLineItem = (props: ListRenderItemInfo<TimeLineItemType>) => {
   return (
@@ -20,6 +20,7 @@ const TimeLineItem = (props: ListRenderItemInfo<TimeLineItemType>) => {
         </Text>
       </View>
       <TouchableOpacity
+        onPress={() => props.item.onPressItem(props.item.plantId)}
         style={tailwind(
           "flex-row items-center bg-white border border-gray-300 rounded-lg p-2"
         )}

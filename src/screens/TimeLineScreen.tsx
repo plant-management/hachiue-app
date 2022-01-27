@@ -1,15 +1,17 @@
 import React, { useCallback, useState } from "react";
 import { FlatList } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 import { REACT_NATIVE_PACKAGER_HOSTNAME } from "@env";
 import { ScreenInitilize } from "../ui";
 import { TimeLineItem, TimeLineItemType } from "../model";
 import { getUserId } from "../util/localUserId";
-import axios from "axios";
 
 const TimeLineScreen = () => {
   const [timeLineList, setTimeLineList] = useState<TimeLineItemType[]>([]);
+
+  const navigation = useNavigation();
 
   useFocusEffect(
     useCallback(() => {
@@ -29,12 +31,17 @@ const TimeLineScreen = () => {
             day: data.created_at,
             characterImageUrl: data.character_image,
             comment: data.comment,
+            onPressItem: handleOnPressItem,
           });
         }
         setTimeLineList(itemList);
       })();
     }, [])
   );
+
+  const handleOnPressItem = (plantId: string) => {
+    navigation.navigate("Character", { plantId: plantId });
+  };
 
   return (
     <ScreenInitilize>

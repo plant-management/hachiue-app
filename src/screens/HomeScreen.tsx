@@ -37,7 +37,9 @@ const HomeScreen = () => {
         );
 
         const itemList: ResponseType[] = [];
+        console.log("n回目");
         for (const data of res.data) {
+          console.log(data);
           itemList.push({
             plantId: data.plant_id,
             plantName: data.plant_name,
