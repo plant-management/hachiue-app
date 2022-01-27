@@ -13,10 +13,27 @@ const TimeLineScreen = () => {
       setTimeLineList([
         {
           plantId: "aaa",
-          plantName: "テストプラント",
+          plantName: "テストプラント1",
           day: "1-27 Thu 10:09",
           characterImageUrl:
             "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
+          comment: "つらたんみづちょーだい",
+        },
+        {
+          plantId: "bbb",
+          plantName: "テストプラント2",
+          day: "1-27 Thu 18:09",
+          characterImageUrl:
+            "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
+          comment: "おみづちょうだいよ！",
+        },
+        {
+          plantId: "ccc",
+          plantName: "テストプラント3",
+          day: "1-27 Thu 18:35",
+          characterImageUrl:
+            "https://images.keizai.biz/yamaguchi_keizai/photonews/1319766662_b.jpg",
+          comment: "あそぼ〜〜〜〜〜！",
         },
       ]);
     }, [])
