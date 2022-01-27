@@ -20,22 +20,18 @@ const TimeLineScreen = () => {
         const res = await axios.get(
           `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/timeline/${userId}`
         );
-        console.log("n回目");
+
+        const itemList: TimeLineItemType[] = [];
         for (const data of res.data) {
-          setTimeLineList((prev) => {
-            console.log(prev);
-            return [
-              ...prev,
-              {
-                plantId: data.plant_id,
-                plantName: data.plant_name,
-                day: data.created_at,
-                characterImageUrl: data.character_image,
-                comment: data.comment,
-              },
-            ];
+          itemList.push({
+            plantId: data.plant_id,
+            plantName: data.plant_name,
+            day: data.created_at,
+            characterImageUrl: data.character_image,
+            comment: data.comment,
           });
         }
+        setTimeLineList(itemList);
       })();
     }, [])
   );

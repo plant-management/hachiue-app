@@ -35,22 +35,20 @@ const HomeScreen = () => {
         const res = await axios.get(
           `http://${REACT_NATIVE_PACKAGER_HOSTNAME}:8000/home/${userId}`
         );
+
+        const itemList: ResponseType[] = [];
         for (const data of res.data) {
-          setResponse((prev) => {
-            return [
-              ...prev,
-              {
-                plantId: data.plant_id,
-                plantName: data.plant_name,
-                plantType: data.plant_type,
-                plantLabelColor: data.plant_label_color,
-                day: data.day,
-                characterImage: data.character_image,
-                onPressItem: handleOnPressItem,
-              },
-            ];
+          itemList.push({
+            plantId: data.plant_id,
+            plantName: data.plant_name,
+            plantType: data.plant_type,
+            plantLabelColor: data.plant_label_color,
+            day: data.day,
+            characterImage: data.character_image,
+            onPressItem: handleOnPressItem,
           });
         }
+        setResponse(itemList);
       })();
     }, [])
   );
