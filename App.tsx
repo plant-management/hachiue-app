@@ -18,7 +18,7 @@ export default function App() {
   // Firebaseでユーザー認証を行うまでの暫定措置
   // ユーザー登録画面を作成後はこのコードは不要
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  storeUserId("27b54cf2-c7a4-4b29-bee3-34423960299b");
+  storeUserId("0c63dbe5-fe41-44c3-ab76-089fc34c0c42");
 
   return (
     <NavigationContainer>

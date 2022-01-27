@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -6,7 +6,11 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { Camera } from "expo-camera";
 import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 import tailwind from "tailwind-rn";
@@ -83,13 +87,15 @@ const CameraScreen = () => {
     }
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      (async () => {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        setHasPermission(status === "granted");
+      })();
+    }, [])
+  );
 
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
